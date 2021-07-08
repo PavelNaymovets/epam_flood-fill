@@ -1,5 +1,7 @@
 package com.epam.rd.autocode.floodfill;
 
 public interface FloodLogger {
-    void log(String floodState);
+    default void log(String floodState){
+        System.out.println(floodState + "\n");
+    };
 }
