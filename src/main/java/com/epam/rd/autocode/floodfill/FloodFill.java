@@ -95,6 +95,7 @@ public interface FloodFill {
         } else{
             System.out.println(floodState);
         }
+
     }
 
     static FloodFill getInstance() {
@@ -105,5 +106,6 @@ public interface FloodFill {
             }
         };
         return floodFill;
+
     }
 }
