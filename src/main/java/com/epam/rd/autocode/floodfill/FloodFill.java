@@ -13,72 +13,72 @@ public interface FloodFill {
             public void flood(String map, FloodLogger logger) {
                 logger.log(map);
                 String[] initString = map.split("\n");
-                String[][] str = new String[initString.length][initString[0].length()];
+                char [][] str = new char [initString.length][initString[0].length()];
 
                 int i = 0;
                 for(String word : initString) {
                     char[] chars = word.toCharArray();
                     for (int j = 0; j < str[i].length; j++) {
-                        str[i][j] = String.valueOf(chars[j]);
+                        str[i][j] = chars[j];
                     }
                     i++;
                 }
 
-                String[][] strNew = new String[initString.length][initString[0].length()];
+                char [][] strNew = new char [initString.length][initString[0].length()];
                 int ii = 0;
                 for(String word : initString) {
                     char[] chars = word.toCharArray();
                     for (int j = 0; j < strNew[ii].length; j++) {
-                        strNew[ii][j] = String.valueOf(chars[j]);
+                        strNew[ii][j] = chars[j];
                     }
                     ii++;
                 }
 
                 for(int k = 0; k < str.length; k++){
                     for(int p = 0; p < str[k].length; p++){
-                        if(str[k][p].equals("░")){
+                        if(str[k][p] == WATER){
                             if(k == 0 && p == 0){
-                                strNew[k][p] = "░";
-                                strNew[k][p+1] = "░";
-                                strNew[k+1][p] = "░";
+                                strNew[k][p] = WATER;
+                                strNew[k][p+1] = WATER;
+                                strNew[k+1][p] = WATER;
                             }else if(k == 0 && p == str[k].length-1){
-                                strNew[k][p] = "░";
-                                strNew[k][p-1] = "░";
-                                strNew[k+1][p] = "░";
+                                strNew[k][p] = WATER;
+                                strNew[k][p-1] = WATER;
+                                strNew[k+1][p] = WATER;
                             } else if(k == str.length-1 && p == 0){
-                                strNew[k][p] = "░";
-                                strNew[k - 1][p] = "░";
-                                strNew[k][p + 1] = "░";
+                                strNew[k][p] = WATER;
+                                strNew[k - 1][p] = WATER;
+                                strNew[k][p + 1] = WATER;
                             } else if(k == str.length-1 && p == str[k].length-1){
-                                strNew[k][p] = "░";
-                                strNew[k - 1][p] = "░";
-                                strNew[k][p - 1] = "░";
+                                strNew[k][p] = WATER;
+                                strNew[k - 1][p] = WATER;
+                                strNew[k][p - 1] = WATER;
                             } else if(k > 0 && k < str.length - 1 && p == 0){
-                                strNew[k][p] = "░";
-                                strNew[k - 1][p] = "░";
-                                strNew[k][p + 1] = "░";
-                                strNew[k + 1][p] = "░";
+                                strNew[k][p] = WATER;
+                                strNew[k - 1][p] = WATER;
+                                strNew[k][p + 1] = WATER;
+                                strNew[k + 1][p] = WATER;
                             } else if(k > 0 && k < str.length - 1 && p == str[k].length-1){
-                                strNew[k][p] = "░";
-                                strNew[k - 1][p] = "░";
-                                strNew[k][p - 1] = "░";
-                                strNew[k + 1][p] = "░";
+                                strNew[k][p] = WATER;
+                                strNew[k - 1][p] = WATER;
+                                strNew[k][p - 1] = WATER;
+                                strNew[k + 1][p] = WATER;
                             } else if(k == 0 && p > 0 && p < str[k].length-1){
-                                strNew[k][p] = "░";
-                                strNew[k][p - 1] = "░";
-                                strNew[k][p + 1] = "░";
-                                strNew[k + 1][p] = "░";
+                                strNew[k][p] = WATER;
+                                strNew[k][p - 1] = WATER;
+                                strNew[k][p + 1] = WATER;
+                                strNew[k + 1][p] = WATER;
                             } else if(k == str.length - 1 && p > 0 && p < str[k].length-1){
-                                strNew[k][p] = "░";
-                                strNew[k][p - 1] = "░";
-                                strNew[k][p + 1] = "░";
-                                strNew[k - 1][p] = "░";
+                                strNew[k][p] = WATER;
+                                strNew[k][p - 1] = WATER;
+                                strNew[k][p + 1] = WATER;
+                                strNew[k - 1][p] = WATER;
                             } else if(k > 0 && k < str.length - 1 && p > 0 && p < str[k].length-1){
-                                strNew[k][p] = "░";
-                                strNew[k - 1][p] = "░";
-                                strNew[k][p + 1] = "░";
-                                strNew[k + 1][p] = "░";
-                                strNew[k][p - 1] = "░";
+                                strNew[k][p] = WATER;
+                                strNew[k - 1][p] = WATER;
+                                strNew[k][p + 1] = WATER;
+                                strNew[k + 1][p] = WATER;
+                                strNew[k][p - 1] = WATER;
                             }
                         }
                     }
@@ -102,7 +102,7 @@ public interface FloodFill {
                     }
                 };
 
-                if(floodState.contains("█")){
+                if(floodState.contains(String.valueOf(LAND))){
                     flood(floodState, floodLogger);
                 }
                 else{
