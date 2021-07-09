@@ -90,23 +90,24 @@ public interface FloodFill {
                     for(int n =0 ; n < strNew[m].length; n++){
                         floodState += strNew[m][n];
                     }
-//                    if(m < strNew.length - 1){
-//                        floodState += "\n";
-//                    }
+                      if(m < strNew.length - 1){
+                          floodState += "\n";
+                      }
                 }
 
                 FloodLogger floodLogger = new FloodLogger() {
                     @Override
                     public void log(String floodState) {
+                        System.out.println(floodState + "\n");
                     }
                 };
 
                 if(floodState.contains("█")){
                     flood(floodState, floodLogger);
                 }
-//                else{
-//                    System.out.println(floodState);
-//                }
+                else{
+                    System.out.println(floodState);
+                }
             };
         };
     }
